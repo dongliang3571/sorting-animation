@@ -1,4 +1,4 @@
-package com.dong.sorting;
+package com.dong.sorting.model;
 
 public class Element {
     private double value;

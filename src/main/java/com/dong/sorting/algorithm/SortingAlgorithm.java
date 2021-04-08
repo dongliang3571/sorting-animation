@@ -1,7 +1,7 @@
 package com.dong.sorting.algorithm;
 
-import com.dong.sorting.ArrayDrawing;
-import com.dong.sorting.Element;
+import com.dong.sorting.drawing.ArrayDrawing;
+import com.dong.sorting.model.Element;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class SortingAlgorithm {
     private Map<String, Sort> algorithmMap;
     private ArrayDrawing drawing;
     private Sort currentAlgorithm;
-    private int currentSpeed = 5;
+    private int currentSpeed;
     private Element[] arr;
 
     public Sort getCurrentAlgorithm() {

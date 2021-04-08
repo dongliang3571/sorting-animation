@@ -1,4 +1,6 @@
-package com.dong.sorting;
+package com.dong.sorting.drawing;
+
+import com.dong.sorting.model.Element;
 
 public interface ArrayDrawing {
 

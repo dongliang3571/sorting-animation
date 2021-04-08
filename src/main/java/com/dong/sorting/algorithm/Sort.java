@@ -1,6 +1,6 @@
 package com.dong.sorting.algorithm;
 
-import com.dong.sorting.Element;
+import com.dong.sorting.model.Element;
 
 public interface Sort {
 

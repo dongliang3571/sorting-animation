@@ -1,5 +1,7 @@
-package com.dong.sorting;
+package com.dong.sorting.drawing;
 
+import com.dong.sorting.drawing.ArrayDrawing;
+import com.dong.sorting.model.Element;
 import org.teavm.jso.canvas.CanvasRenderingContext2D;
 import org.teavm.jso.dom.html.HTMLCanvasElement;
 

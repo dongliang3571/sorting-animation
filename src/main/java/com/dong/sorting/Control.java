@@ -3,6 +3,7 @@ package com.dong.sorting;
 import com.dong.sorting.algorithm.InsertionSort;
 import com.dong.sorting.algorithm.SortingAlgorithm;
 import com.dong.sorting.algorithm.SortingRunner;
+import com.dong.sorting.drawing.ArrayDrawing;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
@@ -17,6 +18,8 @@ import java.util.List;
 public class Control {
 
     public static final HTMLDocument document = HTMLDocument.current();
+    public static final int defaultSpeed = 21;
+    public static final int defaultSpeedLevel = 51;
     public static final List<String> algorithmList = Arrays.asList(
             InsertionSort.class.getSimpleName(),
             "Quick Sort",
@@ -30,7 +33,7 @@ public class Control {
         this.algorithms = new SortingAlgorithm(drawing);
         this.algorithms.addAlgorithm(new InsertionSort(drawing));
         this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(InsertionSort.class.getSimpleName()));
-        this.algorithms.setCurrentSpeed(5);
+        this.algorithms.setCurrentSpeed(defaultSpeed);
         this.algorithms.generateRandomArrayAndDraw();
         setControlMenu();
     }
@@ -54,11 +57,11 @@ public class Control {
 
         HTMLOptionElement option = null;
         Text text = null;
-        for (int i = 1; i <= 11; ++i) {
+        for (int i = 1; i <= defaultSpeedLevel; ++i) {
             option = (HTMLOptionElement) document.createElement("option");
             text = document.createTextNode(Integer.toString(i));
             option.withAttr("value", Integer.toString(i));
-            if (i == 5) { // select default speed of 5
+            if (i == defaultSpeed) { // select default speed of 10
                 option.setDefaultSelected(true);
             }
             option.appendChild(text);
