@@ -22,37 +22,47 @@ public class ArrayDrawingImpl implements ArrayDrawing {
         this.context = (CanvasRenderingContext2D)canvas.getContext("2d");
     }
 
-    public void draw(Element[] arr) throws InterruptedException {
+    public void draw(Element[] arr) {
         context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         for (int i = 0; i < arr.length; ++i) {
             drawRectangle(arr[i], i);
         }
-        Thread.sleep(100);
+    }
+
+    public void drawWithSleep(Element[] arr, long millis) throws InterruptedException {
+        draw(arr);
+        Thread.sleep(millis);
     }
 
     // we first draw a big rectangle
     // and then draw a smaller inside the big one to create the illusion of the rectangle has a border
     private void drawRectangle(Element e, int position) {
-        drawOuterRectangle(e.getValue(), position);
-        drawInnerRectangle(e.getValue(), position);
+        drawOuterRectangle(e, position);
+        drawInnerRectangle(e, position);
     }
 
-    private void drawInnerRectangle(double height, int position) {
+    private void drawInnerRectangle(Element e, int position) {
+        double height = e.getValue();
         double canvas_height = (double)CANVAS_HEIGHT;
 
-        context.setFillStyle(RECTANGLE_COLOR);
+        context.setFillStyle(e.isHighlighted() ? BORDER_COLOR : RECTANGLE_COLOR);
         context.fillRect(
                 position * RECTANGLE_WIDTH+BORDER_SIZE,
                 canvas_height - height + BORDER_SIZE,
                 RECTANGLE_WIDTH - BORDER_SIZE*2,
-                height - BORDER_SIZE);
+                height - BORDER_SIZE*2);
     }
 
-    private void drawOuterRectangle(double height, int position) {
+    private void drawOuterRectangle(Element e, int position) {
+        double height = e.getValue();
         double canvas_height = (double)CANVAS_HEIGHT;
 
         context.setFillStyle(BORDER_COLOR);
         context.fillRect(position * RECTANGLE_WIDTH, canvas_height - height, RECTANGLE_WIDTH, height);
+    }
+
+    public void cleanCanvas() {
+        context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     }
 }

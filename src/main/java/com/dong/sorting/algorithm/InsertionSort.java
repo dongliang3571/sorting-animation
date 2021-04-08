@@ -2,21 +2,34 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.ArrayDrawing;
 import com.dong.sorting.Element;
+import com.dong.sorting.util.Util;
 
-
-public class InsertionSort implements SortingAlgorithm {
+public class InsertionSort implements Sort {
 
     ArrayDrawing drawing;
+    private String algoName;
 
     public InsertionSort(ArrayDrawing drawing) {
         this.drawing = drawing;
+        this.algoName = InsertionSort.class.getSimpleName();
     }
 
-    public void sort(Element[] arr) throws InterruptedException {
+    public String getAlgoName() {
+        return algoName;
+    }
+
+    public void sort(Element[] arr, int speed) throws InterruptedException {
+        long sleep = Util.getSleepTimeFromSpeed(speed);
+        sortWithSleep(arr, sleep);
+    }
+
+    private void sortWithSleep(Element[] arr, long sleep) throws InterruptedException {
         if (arr == null || arr.length == 0 || arr.length == 1) return;
 
         for (int i = 1; i < arr.length; ++i) {
             Element cur = arr[i];
+            cur.setHighlighted(true);
+            this.drawing.drawWithSleep(arr, sleep);
 
             int backPtr = i;
 
@@ -27,7 +40,10 @@ public class InsertionSort implements SortingAlgorithm {
             }
 
             arr[backPtr] = cur;
-            this.drawing.draw(arr);
+            this.drawing.drawWithSleep(arr, sleep);
+            cur.setHighlighted(false);
         }
+
+        this.drawing.draw(arr);
     }
 }

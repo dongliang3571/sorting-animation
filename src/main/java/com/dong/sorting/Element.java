@@ -1,17 +1,26 @@
 package com.dong.sorting;
 
 public class Element {
-    private int value;
+    private double value;
+    private boolean isHighlighted;
 
-    public Element(int value) {
+    public Element(double value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
+    }
+
+    public boolean isHighlighted() {
+        return isHighlighted;
+    }
+
+    public void setHighlighted(boolean highlighted) {
+        isHighlighted = highlighted;
     }
 }
