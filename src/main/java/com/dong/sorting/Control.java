@@ -1,6 +1,7 @@
 package com.dong.sorting;
 
 import com.dong.sorting.algorithm.InsertionSort;
+import com.dong.sorting.algorithm.MergeSort;
 import com.dong.sorting.algorithm.SortingAlgorithm;
 import com.dong.sorting.algorithm.SortingRunner;
 import com.dong.sorting.drawing.ArrayDrawing;
@@ -20,10 +21,6 @@ public class Control {
     public static final HTMLDocument document = HTMLDocument.current();
     public static final int defaultSpeed = 21;
     public static final int defaultSpeedLevel = 51;
-    public static final List<String> algorithmList = Arrays.asList(
-            InsertionSort.class.getSimpleName(),
-            "Quick Sort",
-            "Merge Sort");
 
     private SortingAlgorithm algorithms;
     private ArrayDrawing drawing;
@@ -32,6 +29,7 @@ public class Control {
     public Control(ArrayDrawing drawing) {
         this.algorithms = new SortingAlgorithm(drawing);
         this.algorithms.addAlgorithm(new InsertionSort(drawing));
+        this.algorithms.addAlgorithm(new MergeSort(drawing));
         this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(InsertionSort.class.getSimpleName()));
         this.algorithms.setCurrentSpeed(defaultSpeed);
         this.algorithms.generateRandomArrayAndDraw();
@@ -69,7 +67,6 @@ public class Control {
         }
 
         select.addEventListener("change", evt -> {
-            reset();
             HTMLOptionsCollection col = select.getOptions();
             algorithms.setCurrentSpeed(Integer.parseInt(col.item(col.getSelectedIndex()).getValue()));
         });
@@ -86,7 +83,7 @@ public class Control {
 
         HTMLOptionElement option = null;
         Text text = null;
-        for (String algo : algorithmList) {
+        for (String algo : algorithms.getAlgorithmNameList()) {
             option = (HTMLOptionElement) document.createElement("option");
             text = document.createTextNode(algo);
             option.withAttr("value", algo);
@@ -97,6 +94,7 @@ public class Control {
         select.addEventListener("change", evt -> {
             HTMLOptionsCollection col = select.getOptions();
             algorithms.setCurrentAlgorithm(algorithms.getAlgorithm(col.item(col.getSelectedIndex()).getValue()));
+            reset();
         });
 
         div.appendChild(label);
@@ -108,8 +106,6 @@ public class Control {
         button.setInnerHTML("Start");
         button.withAttr("style", "margin-left: 25px;");
         button.addEventListener("click", evt -> {
-            reset();
-
             sortingThread = new SortingRunner(algorithms);
             sortingThread.start();
         });

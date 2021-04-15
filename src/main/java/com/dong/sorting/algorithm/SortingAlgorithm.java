@@ -3,7 +3,10 @@ package com.dong.sorting.algorithm;
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -51,6 +54,13 @@ public class SortingAlgorithm {
         }
 
         return ret;
+    }
+
+    public List<String> getAlgorithmNameList() {
+        List<String> nameList = new ArrayList<>(algorithmMap.keySet());
+        Collections.sort(nameList);
+
+        return nameList;
     }
 
     public void startSorting() throws InterruptedException {
