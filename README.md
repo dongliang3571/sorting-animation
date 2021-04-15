@@ -20,3 +20,4 @@ https://dongliang3571.github.io/sorting-animation
 
 ### Currently supported sorting algorithm
 - Insertion sort
+- Merge sort
