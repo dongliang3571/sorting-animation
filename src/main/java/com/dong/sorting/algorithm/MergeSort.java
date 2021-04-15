@@ -19,30 +19,52 @@ public class MergeSort implements Sort {
 
     public void sort(Element[] arr, int speed) throws InterruptedException {
         long sleep = Util.getSleepTimeFromSpeed(speed);
-        sortWithSleep(arr, sleep);
+        sortWithSleep(arr, 0, arr.length-1, sleep);
     }
 
-    private void sortWithSleep(Element[] arr, long sleep) throws InterruptedException {
-        if (arr == null || arr.length == 0 || arr.length == 1) return;
+    private void sortWithSleep(Element[] arr, int left, int right, long sleep) throws InterruptedException {
+        if (left >= right) return;
 
-        for (int i = 1; i < arr.length; ++i) {
-            Element cur = arr[i];
-            cur.setHighlighted(true);
-            this.drawing.drawWithSleep(arr, sleep);
+        int mid = left + (right - left) / 2;
+        sortWithSleep(arr, left, mid, sleep);
+        sortWithSleep(arr, mid+1, right, sleep);
 
-            int backPtr = i;
+        Element[] tmp = new Element[right-left+1];
 
-            while (backPtr > 0 && cur.getValue() < arr[backPtr-1].getValue()) {
-
-                arr[backPtr] = arr[backPtr-1];
-                backPtr--;
+        int ptr1 = left;
+        int ptr2 = mid+1;
+        int ptr3 = 0;
+        while (ptr1 <= mid && ptr2 <= right) {
+            int c = arr[ptr1].compareTo(arr[ptr2]);
+            if (c < 0) {
+                tmp[ptr3] = arr[ptr1];
+                ++ptr1;
+            } else {
+                tmp[ptr3] = arr[ptr2];
+                ++ptr2;
             }
 
-            arr[backPtr] = cur;
-            this.drawing.drawWithSleep(arr, sleep);
-            cur.setHighlighted(false);
+            ++ptr3;
         }
 
-        this.drawing.draw(arr);
+        while (ptr1 <= mid) {
+            tmp[ptr3] = arr[ptr1];
+            ++ptr1;
+            ++ptr3;
+        }
+
+        while (ptr2 <= right) {
+            tmp[ptr3] = arr[ptr2];
+            ++ptr2;
+            ++ptr3;
+        }
+
+        ptr3 = 0;
+        for (int i = left; i <= right; ++i, ++ptr3) {
+            arr[i] = tmp[ptr3];
+            arr[i].setHighlighted(true);
+            this.drawing.drawWithSleep(arr, sleep);
+            arr[i].setHighlighted(false);
+        }
     }
 }

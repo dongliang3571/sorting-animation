@@ -1,6 +1,6 @@
 package com.dong.sorting.model;
 
-public class Element {
+public class Element implements Comparable<Element> {
     private double value;
     private boolean isHighlighted;
 
@@ -22,5 +22,16 @@ public class Element {
 
     public void setHighlighted(boolean highlighted) {
         isHighlighted = highlighted;
+    }
+
+    @Override
+    public int compareTo(Element o) {
+        if (this.getValue() > o.getValue()) {
+            return 1;
+        } else if (this.getValue() < o.getValue()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

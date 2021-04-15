@@ -13,6 +13,7 @@ import java.util.Random;
 public class SortingAlgorithm {
 
     public static final Random random = new Random();
+    public static final int ARRAY_SIZE = 100;
 
     private Map<String, Sort> algorithmMap;
     private ArrayDrawing drawing;
@@ -68,9 +69,9 @@ public class SortingAlgorithm {
     }
 
     public void generateRandomArrayAndDraw() {
-        arr = new Element[50];
+        arr = new Element[ARRAY_SIZE];
 
-        for (int i = 0; i < 50; ++i) {
+        for (int i = 0; i < ARRAY_SIZE; ++i) {
             // I don't want 0s
             arr[i] = new Element(random.nextInt(400)+10);
         }

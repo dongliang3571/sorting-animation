@@ -33,7 +33,7 @@ public class InsertionSort implements Sort {
 
             int backPtr = i;
 
-            while (backPtr > 0 && cur.getValue() < arr[backPtr-1].getValue()) {
+            while (backPtr > 0 && cur.compareTo(arr[backPtr-1]) < 0) {
 
                 arr[backPtr] = arr[backPtr-1];
                 backPtr--;

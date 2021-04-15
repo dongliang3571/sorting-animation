@@ -20,7 +20,7 @@ public class Control {
 
     public static final HTMLDocument document = HTMLDocument.current();
     public static final int defaultSpeed = 21;
-    public static final int defaultSpeedLevel = 51;
+    public static final int defaultSpeedLevel = 21;
 
     private SortingAlgorithm algorithms;
     private ArrayDrawing drawing;
@@ -106,6 +106,7 @@ public class Control {
         button.setInnerHTML("Start");
         button.withAttr("style", "margin-left: 25px;");
         button.addEventListener("click", evt -> {
+            reset();
             sortingThread = new SortingRunner(algorithms);
             sortingThread.start();
         });

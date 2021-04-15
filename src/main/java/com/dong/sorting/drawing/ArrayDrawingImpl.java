@@ -1,13 +1,12 @@
 package com.dong.sorting.drawing;
 
-import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
 import org.teavm.jso.canvas.CanvasRenderingContext2D;
 import org.teavm.jso.dom.html.HTMLCanvasElement;
 
 public class ArrayDrawingImpl implements ArrayDrawing {
 
-    private static final double RECTANGLE_WIDTH = 30;
+    private static final double RECTANGLE_WIDTH = 15;
     private static final double BORDER_SIZE = 2;
     private static final String BORDER_COLOR = "black";
     private static final String RECTANGLE_COLOR = "white";
