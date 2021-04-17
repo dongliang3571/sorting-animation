@@ -42,6 +42,11 @@ public class SortingAlgorithm {
         if (algorithmMap == null) {
             algorithmMap = new HashMap<>();
         }
+
+        this.addAlgorithm(new InsertionSort(drawing));
+        this.addAlgorithm(new MergeSort(drawing));
+        this.addAlgorithm(new SelectionSort(drawing));
+        this.addAlgorithm(new BubbleSort(drawing));
     }
 
     public void addAlgorithm(Sort algorithm) {

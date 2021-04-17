@@ -1,8 +1,6 @@
 package com.dong.sorting;
 
 import com.dong.sorting.algorithm.InsertionSort;
-import com.dong.sorting.algorithm.MergeSort;
-import com.dong.sorting.algorithm.SelectionSort;
 import com.dong.sorting.algorithm.SortingAlgorithm;
 import com.dong.sorting.algorithm.SortingRunner;
 import com.dong.sorting.drawing.ArrayDrawing;
@@ -13,9 +11,6 @@ import org.teavm.jso.dom.html.HTMLOptionElement;
 import org.teavm.jso.dom.html.HTMLOptionsCollection;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 import org.teavm.jso.dom.xml.Text;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class Control {
 
@@ -29,9 +24,6 @@ public class Control {
 
     public Control(ArrayDrawing drawing) {
         this.algorithms = new SortingAlgorithm(drawing);
-        this.algorithms.addAlgorithm(new InsertionSort(drawing));
-        this.algorithms.addAlgorithm(new MergeSort(drawing));
-        this.algorithms.addAlgorithm(new SelectionSort(drawing));
         this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(InsertionSort.class.getSimpleName()));
         this.algorithms.setCurrentSpeed(defaultSpeed);
         this.algorithms.generateRandomArrayAndDraw();
