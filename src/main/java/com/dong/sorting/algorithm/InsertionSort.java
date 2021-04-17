@@ -28,12 +28,12 @@ public class InsertionSort implements Sort {
 
         for (int i = 1; i < arr.length; ++i) {
             Element cur = arr[i];
-            cur.setHighlighted(true);
-            this.drawing.drawWithSleep(arr, sleep);
-
             int backPtr = i;
 
             while (backPtr > 0 && cur.compareTo(arr[backPtr-1]) < 0) {
+                arr[backPtr].setHighlighted(true);
+                this.drawing.drawWithSleep(arr, sleep);
+                arr[backPtr].setHighlighted(false);
 
                 arr[backPtr] = arr[backPtr-1];
                 backPtr--;
@@ -41,7 +41,6 @@ public class InsertionSort implements Sort {
 
             arr[backPtr] = cur;
             this.drawing.drawWithSleep(arr, sleep);
-            cur.setHighlighted(false);
         }
 
         this.drawing.draw(arr);
