@@ -1,5 +1,6 @@
 package com.dong.sorting;
 
+import com.dong.sorting.algorithm.BubbleSort;
 import com.dong.sorting.algorithm.InsertionSort;
 import com.dong.sorting.algorithm.SortingAlgorithm;
 import com.dong.sorting.algorithm.SortingRunner;
@@ -24,7 +25,7 @@ public class Control {
 
     public Control(ArrayDrawing drawing) {
         this.algorithms = new SortingAlgorithm(drawing);
-        this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(InsertionSort.class.getSimpleName()));
+        this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(BubbleSort.class.getSimpleName()));
         this.algorithms.setCurrentSpeed(defaultSpeed);
         this.algorithms.generateRandomArrayAndDraw();
         setControlMenu();
