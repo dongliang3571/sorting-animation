@@ -33,10 +33,6 @@ public class BubbleSort implements Sort {
 
             for (int i = 1; i < len; ++i) {
                 if (arr[i].compareTo(arr[i-1]) < 0) {
-                    arr[i].setHighlighted(true);
-                    this.drawing.drawWithSleep(arr, sleep);
-                    arr[i].setHighlighted(false);
-
                     Element tmp = arr[i-1];
                     arr[i-1] = arr[i];
                     arr[i] = tmp;
