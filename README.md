@@ -19,5 +19,8 @@ https://dongliang3571.github.io/sorting-animation
 ![snapshot1](https://github.com/dongliang3571/sorting-animation/blob/master/images/image1.png?raw=true)
 
 ### Currently supported sorting algorithm
+- Bubble sort
 - Insertion sort
 - Merge sort
+- Quick sort
+- Selection sort

@@ -47,6 +47,7 @@ public class SortingAlgorithm {
         this.addAlgorithm(new MergeSort(drawing));
         this.addAlgorithm(new SelectionSort(drawing));
         this.addAlgorithm(new BubbleSort(drawing));
+        this.addAlgorithm(new QuickSort(drawing));
     }
 
     public void addAlgorithm(Sort algorithm) {
