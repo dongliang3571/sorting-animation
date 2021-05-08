@@ -4,18 +4,10 @@ import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
 import com.dong.sorting.util.Util;
 
-public class BubbleSort implements Sort {
-
-    ArrayDrawing drawing;
-    private String algoName;
+public class BubbleSort extends AbstractSort {
 
     public BubbleSort(ArrayDrawing drawing) {
-        this.drawing = drawing;
-        this.algoName = getClass().getSimpleName();
-    }
-
-    public String getAlgoName() {
-        return algoName;
+        super(drawing);
     }
 
     public void sort(Element[] arr, int speed) throws InterruptedException {
