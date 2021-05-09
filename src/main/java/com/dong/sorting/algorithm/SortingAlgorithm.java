@@ -48,6 +48,8 @@ public class SortingAlgorithm {
         this.addAlgorithm(new SelectionSort(drawing));
         this.addAlgorithm(new BubbleSort(drawing));
         this.addAlgorithm(new QuickSort(drawing));
+        this.addAlgorithm(new HeapSortRecursive(drawing));
+        this.addAlgorithm(new HeapSortIterative(drawing));
     }
 
     public void addAlgorithm(Sort algorithm) {
