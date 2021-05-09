@@ -20,6 +20,7 @@ https://dongliang3571.github.io/sorting-animation
 
 ### Currently supported sorting algorithm
 - Bubble sort
+- Head Sort
 - Insertion sort
 - Merge sort
 - Quick sort
