@@ -7,4 +7,6 @@ public interface ArrayDrawing {
     void draw(Element[] arr);
     void drawWithSleep(Element[] arr, long millis) throws InterruptedException;
     void cleanCanvas();
+    GraphType getCurrentGraphType();
+    void setCurrentGraphType(GraphType graphType);
 }

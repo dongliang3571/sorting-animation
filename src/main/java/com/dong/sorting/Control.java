@@ -4,6 +4,7 @@ import com.dong.sorting.algorithm.BubbleSort;
 import com.dong.sorting.algorithm.SortingAlgorithm;
 import com.dong.sorting.algorithm.SortingRunner;
 import com.dong.sorting.drawing.ArrayDrawing;
+import com.dong.sorting.drawing.GraphType;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
@@ -11,6 +12,8 @@ import org.teavm.jso.dom.html.HTMLOptionElement;
 import org.teavm.jso.dom.html.HTMLOptionsCollection;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 import org.teavm.jso.dom.xml.Text;
+
+import javax.swing.text.html.HTML;
 
 public class Control {
 
@@ -26,6 +29,7 @@ public class Control {
     private HTMLElement spaceComplexityElement;
 
     public Control(ArrayDrawing drawing) {
+        this.drawing = drawing;
         this.algorithms = new SortingAlgorithm(drawing);
         this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(BubbleSort.class.getSimpleName()));
         this.algorithms.setCurrentSpeed(defaultSpeed);
@@ -40,6 +44,7 @@ public class Control {
 
         setUpSpeedSelectElement(div);
         setUpAlgorithmSelectElement(div);
+        setUpGraphTypeSelectElement(div);
         setUpStartButton(div);
         setUpResetButton(div);
         setUpTimeComplexityElement(div);
@@ -95,6 +100,32 @@ public class Control {
             algorithms.setCurrentAlgorithm(algorithms.getAlgorithm(col.item(col.getSelectedIndex()).getValue()));
             timeComplexityElement.withText(algorithms.getCurrentAlgorithm().getTimeComplexity());
             spaceComplexityElement.withText(algorithms.getCurrentAlgorithm().getSpaceComplexity());
+            reset();
+        });
+
+        div.appendChild(label);
+        div.appendChild(select);
+    }
+
+    private void setUpGraphTypeSelectElement(HTMLElement div) {
+        HTMLElement label = document.createElement("label");
+        label.withText("Graph: ");
+        label.withAttr("style", "margin-left: 25px;");
+        HTMLSelectElement select = (HTMLSelectElement) document.createElement("select");
+
+        HTMLOptionElement option = null;
+        Text text = null;
+        for (GraphType gt : GraphType.graphTypes) {
+            option = (HTMLOptionElement) document.createElement("option");
+            text = document.createTextNode(gt.name());
+            option.withAttr("value", gt.name());
+            option.appendChild(text);
+            select.appendChild(option);
+        }
+
+        select.addEventListener("change", evt -> {
+            HTMLOptionsCollection col = select.getOptions();
+            drawing.setCurrentGraphType(GraphType.valueOf(col.item(col.getSelectedIndex()).getValue()));
             reset();
         });
 
