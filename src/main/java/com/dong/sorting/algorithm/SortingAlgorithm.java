@@ -45,6 +45,7 @@ public class SortingAlgorithm {
 
         this.addAlgorithm(new InsertionSort(drawing, "O(n^2)", "O(1)"));
         this.addAlgorithm(new MergeSort(drawing, "O(nlogn)", "O(n)"));
+        this.addAlgorithm(new MergeSortMultithreaded(drawing, "O(n)", "O(n)"));
         this.addAlgorithm(new SelectionSort(drawing, "O(n^2)", "O(1)"));
         this.addAlgorithm(new BubbleSort(drawing, "O(n^2)", "O(1)"));
         this.addAlgorithm(new QuickSort(drawing, "O(nlogn)", "O(logn)"));

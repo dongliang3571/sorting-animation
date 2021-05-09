@@ -22,8 +22,13 @@ public class MergeSort extends AbstractSort {
         sortWithSleep(arr, left, mid, sleep);
         sortWithSleep(arr, mid+1, right, sleep);
 
+        merge(arr, left, right, sleep);
+    }
+
+    private void merge(Element[] arr, int left, int right, long sleep) throws InterruptedException {
         Element[] tmp = new Element[right-left+1];
 
+        int mid = left + (right - left) / 2;
         int ptr1 = left;
         int ptr2 = mid+1;
         int ptr3 = 0;

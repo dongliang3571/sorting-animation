@@ -16,4 +16,10 @@ public class SortingRunner extends Thread {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void interrupt() {
+        algorithms.getCurrentAlgorithm().interrupt();
+        super.interrupt();
+    }
 }

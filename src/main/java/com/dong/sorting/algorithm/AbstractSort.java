@@ -35,4 +35,9 @@ public abstract class AbstractSort implements Sort {
     public void sort(Element[] arr, int speed) throws InterruptedException {
 
     }
+
+    @Override
+    public void interrupt() {
+
+    }
 }
