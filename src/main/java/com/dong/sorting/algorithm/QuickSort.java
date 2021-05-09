@@ -6,8 +6,8 @@ import com.dong.sorting.util.Util;
 
 public class QuickSort extends AbstractSort {
 
-    public QuickSort(ArrayDrawing drawing) {
-        super(drawing);
+    public QuickSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
+        super(drawing, timeComplexity, spaceComplexity);
     }
 
     public void sort(Element[] arr, int speed) throws InterruptedException {

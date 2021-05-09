@@ -43,13 +43,13 @@ public class SortingAlgorithm {
             algorithmMap = new HashMap<>();
         }
 
-        this.addAlgorithm(new InsertionSort(drawing));
-        this.addAlgorithm(new MergeSort(drawing));
-        this.addAlgorithm(new SelectionSort(drawing));
-        this.addAlgorithm(new BubbleSort(drawing));
-        this.addAlgorithm(new QuickSort(drawing));
-        this.addAlgorithm(new HeapSortRecursive(drawing));
-        this.addAlgorithm(new HeapSortIterative(drawing));
+        this.addAlgorithm(new InsertionSort(drawing, "O(n^2)", "O(1)"));
+        this.addAlgorithm(new MergeSort(drawing, "O(nlogn)", "O(n)"));
+        this.addAlgorithm(new SelectionSort(drawing, "O(n^2)", "O(1)"));
+        this.addAlgorithm(new BubbleSort(drawing, "O(n^2)", "O(1)"));
+        this.addAlgorithm(new QuickSort(drawing, "O(nlogn)", "O(logn)"));
+        this.addAlgorithm(new HeapSortRecursive(drawing, "O(nlogn)", "O(1)"));
+        this.addAlgorithm(new HeapSortIterative(drawing, "O(nlogn)", "O(1)"));
     }
 
     public void addAlgorithm(Sort algorithm) {

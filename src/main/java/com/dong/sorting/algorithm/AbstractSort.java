@@ -6,14 +6,29 @@ import com.dong.sorting.model.Element;
 public abstract class AbstractSort implements Sort {
     protected ArrayDrawing drawing;
     protected String algoName;
+    protected String timeComplexity;
+    protected String spaceComplexity;
 
-    public AbstractSort(ArrayDrawing drawing) {
+    public AbstractSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
         this.drawing = drawing;
         this.algoName = getClass().getSimpleName();
+        this.timeComplexity = timeComplexity;
+        this.spaceComplexity = spaceComplexity;
     }
 
+    @Override
     public String getAlgoName() {
         return algoName;
+    }
+
+    @Override
+    public String getTimeComplexity() {
+        return timeComplexity;
+    }
+
+    @Override
+    public String getSpaceComplexity() {
+        return spaceComplexity;
     }
 
     @Override

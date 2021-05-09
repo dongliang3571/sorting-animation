@@ -6,4 +6,6 @@ public interface Sort {
 
     void sort(Element[] arr, int speed) throws InterruptedException;
     String getAlgoName();
+    String getTimeComplexity();
+    String getSpaceComplexity();
 }

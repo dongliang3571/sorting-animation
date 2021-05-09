@@ -6,8 +6,8 @@ import com.dong.sorting.util.Util;
 
 public class MergeSort extends AbstractSort {
 
-    public MergeSort(ArrayDrawing drawing) {
-        super(drawing);
+    public MergeSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
+        super(drawing, timeComplexity, spaceComplexity);
     }
 
     public void sort(Element[] arr, int speed) throws InterruptedException {

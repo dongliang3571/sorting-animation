@@ -6,10 +6,11 @@ import com.dong.sorting.util.Util;
 
 public class BubbleSort extends AbstractSort {
 
-    public BubbleSort(ArrayDrawing drawing) {
-        super(drawing);
+    public BubbleSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
+        super(drawing, timeComplexity, spaceComplexity);
     }
 
+    @Override
     public void sort(Element[] arr, int speed) throws InterruptedException {
         long sleep = Util.getSleepTimeFromSpeed(speed);
         sortWithSleep(arr, sleep);

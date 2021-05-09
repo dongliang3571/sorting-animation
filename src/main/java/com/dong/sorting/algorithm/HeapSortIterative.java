@@ -5,8 +5,8 @@ import com.dong.sorting.model.Element;
 import com.dong.sorting.util.Util;
 
 public class HeapSortIterative extends AbstractSort {
-    public HeapSortIterative(ArrayDrawing drawing) {
-        super(drawing);
+    public HeapSortIterative(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
+        super(drawing, timeComplexity, spaceComplexity);
     }
 
     public void sort(Element[] arr, int speed) throws InterruptedException {

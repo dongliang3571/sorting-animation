@@ -22,6 +22,9 @@ public class Control {
     private ArrayDrawing drawing;
     private Thread sortingThread;
 
+    private HTMLElement timeComplexityElement;
+    private HTMLElement spaceComplexityElement;
+
     public Control(ArrayDrawing drawing) {
         this.algorithms = new SortingAlgorithm(drawing);
         this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(BubbleSort.class.getSimpleName()));
@@ -39,6 +42,8 @@ public class Control {
         setUpAlgorithmSelectElement(div);
         setUpStartButton(div);
         setUpResetButton(div);
+        setUpTimeComplexityElement(div);
+        setUpSpaceComplexityElement(div);
     }
 
     private void setUpSpeedSelectElement(HTMLElement div) {
@@ -88,6 +93,8 @@ public class Control {
         select.addEventListener("change", evt -> {
             HTMLOptionsCollection col = select.getOptions();
             algorithms.setCurrentAlgorithm(algorithms.getAlgorithm(col.item(col.getSelectedIndex()).getValue()));
+            timeComplexityElement.withText(algorithms.getCurrentAlgorithm().getTimeComplexity());
+            spaceComplexityElement.withText(algorithms.getCurrentAlgorithm().getSpaceComplexity());
             reset();
         });
 
@@ -106,6 +113,32 @@ public class Control {
         });
 
         div.appendChild(button);
+    }
+
+    private void setUpTimeComplexityElement(HTMLElement div) {
+        HTMLElement label = document.createElement("label");
+        label.withText("Time Complexity(Average case): ");
+        label.withAttr("style", "margin-left: 25px;");
+
+        timeComplexityElement = document.createElement("paragraph");
+        timeComplexityElement.withAttr("style", "margin-left: 5px;");
+        timeComplexityElement.withText(this.algorithms.getCurrentAlgorithm().getTimeComplexity());
+
+        div.appendChild(label);
+        div.appendChild(timeComplexityElement);
+    }
+
+    private void setUpSpaceComplexityElement(HTMLElement div) {
+        HTMLElement label = document.createElement("label");
+        label.withText("Space Complexity(Average case): ");
+        label.withAttr("style", "margin-left: 25px;");
+
+        spaceComplexityElement = document.createElement("paragraph");
+        spaceComplexityElement.withAttr("style", "margin-left: 5px;");
+        spaceComplexityElement.withText(this.algorithms.getCurrentAlgorithm().getSpaceComplexity());
+
+        div.appendChild(label);
+        div.appendChild(spaceComplexityElement);
     }
 
     private void setUpResetButton(HTMLElement div) {

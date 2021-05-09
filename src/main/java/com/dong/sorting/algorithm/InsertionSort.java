@@ -6,8 +6,8 @@ import com.dong.sorting.util.Util;
 
 public class InsertionSort extends AbstractSort {
 
-    public InsertionSort(ArrayDrawing drawing) {
-        super(drawing);
+    public InsertionSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
+        super(drawing, timeComplexity, spaceComplexity);
     }
 
     public void sort(Element[] arr, int speed) throws InterruptedException {
