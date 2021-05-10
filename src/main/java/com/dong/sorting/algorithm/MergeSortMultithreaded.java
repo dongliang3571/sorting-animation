@@ -2,11 +2,10 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
-import com.dong.sorting.util.Util;
 
 public class MergeSortMultithreaded extends AbstractSort {
     private static int numOfThreads = 4;
-    private static int interval = SortingAlgorithm.ARRAY_SIZE/numOfThreads;
+    private static int interval = SortingAlgorithms.ARRAY_SIZE/numOfThreads;
     private Thread[] threads;
 
     public MergeSortMultithreaded(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {

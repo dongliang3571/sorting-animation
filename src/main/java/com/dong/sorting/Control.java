@@ -1,10 +1,9 @@
 package com.dong.sorting;
 
 import com.dong.sorting.algorithm.BubbleSort;
-import com.dong.sorting.algorithm.SortingAlgorithm;
+import com.dong.sorting.algorithm.SortingAlgorithms;
 import com.dong.sorting.algorithm.SortingRunner;
 import com.dong.sorting.drawing.ArrayDrawing;
-import com.dong.sorting.drawing.ArrayDrawingImpl;
 import com.dong.sorting.drawing.GraphType;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
@@ -18,7 +17,7 @@ public class Control {
 
     public static final HTMLDocument document = HTMLDocument.current();
 
-    private SortingAlgorithm algorithms;
+    private SortingAlgorithms algorithms;
     private ArrayDrawing drawing;
     private Thread sortingThread;
 
@@ -27,7 +26,7 @@ public class Control {
 
     public Control(ArrayDrawing drawing) {
         this.drawing = drawing;
-        this.algorithms = new SortingAlgorithm(drawing);
+        this.algorithms = new SortingAlgorithms(drawing);
         this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(BubbleSort.class.getSimpleName()));
         this.algorithms.generateRandomArrayAndDraw();
         setControlMenu();

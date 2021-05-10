@@ -2,9 +2,9 @@ package com.dong.sorting.algorithm;
 
 public class SortingRunner extends Thread {
 
-    SortingAlgorithm algorithms;
+    SortingAlgorithms algorithms;
 
-    public SortingRunner(SortingAlgorithm algorithms) {
+    public SortingRunner(SortingAlgorithms algorithms) {
         this.algorithms = algorithms;
     }
 
