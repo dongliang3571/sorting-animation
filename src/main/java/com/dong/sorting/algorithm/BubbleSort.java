@@ -12,10 +12,10 @@ public class BubbleSort extends AbstractSort {
 
     @Override
     public void sort(Element[] arr) throws InterruptedException {
-        sortWithSleep(arr);
+        sortAndDraw(arr);
     }
 
-    private void sortWithSleep(Element[] arr) throws InterruptedException {
+    private void sortAndDraw(Element[] arr) throws InterruptedException {
         if (arr == null || arr.length == 0 || arr.length == 1) return;
 
         boolean swapHappened = true;

@@ -11,17 +11,17 @@ public class QuickSort extends AbstractSort {
     }
 
     public void sort(Element[] arr) throws InterruptedException {
-        sortWithSleep(arr, 0, arr.length-1);
+        sortAndDraw(arr, 0, arr.length-1);
     }
 
-    private void sortWithSleep(Element[] arr, int low, int high) throws InterruptedException {
+    private void sortAndDraw(Element[] arr, int low, int high) throws InterruptedException {
         if (arr == null || arr.length == 0 || arr.length == 1) return;
         if (high <= low) return;
 
         int pivot = partition(arr, low, high);
 
-        sortWithSleep(arr, low, pivot-1);
-        sortWithSleep(arr, pivot, high);
+        sortAndDraw(arr, low, pivot-1);
+        sortAndDraw(arr, pivot, high);
     }
 
     private int partition(Element[] arr, int low, int high) throws InterruptedException {

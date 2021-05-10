@@ -11,15 +11,15 @@ public class MergeSort extends AbstractSort {
     }
 
     public void sort(Element[] arr) throws InterruptedException {
-        sortWithSleep(arr, 0, arr.length-1);
+        sortAndDraw(arr, 0, arr.length-1);
     }
 
-    private void sortWithSleep(Element[] arr, int left, int right) throws InterruptedException {
+    private void sortAndDraw(Element[] arr, int left, int right) throws InterruptedException {
         if (left >= right) return;
 
         int mid = left + (right - left) / 2;
-        sortWithSleep(arr, left, mid);
-        sortWithSleep(arr, mid+1, right);
+        sortAndDraw(arr, left, mid);
+        sortAndDraw(arr, mid+1, right);
 
         merge(arr, left, right);
     }

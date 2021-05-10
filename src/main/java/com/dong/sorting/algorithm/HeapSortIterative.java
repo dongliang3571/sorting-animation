@@ -12,12 +12,12 @@ public class HeapSortIterative extends AbstractSort {
     public void sort(Element[] arr) throws InterruptedException {
         int n = arr.length;
         buildHeap(arr, n);
-        sortWithSleep(arr);
+        sortAndDraw(arr);
 
         drawing.drawWithSleep(arr);
     }
 
-    private void sortWithSleep(Element[] arr) throws InterruptedException {
+    private void sortAndDraw(Element[] arr) throws InterruptedException {
 
         int n = arr.length;
 

@@ -19,7 +19,7 @@ public class MergeSortMultithreaded extends AbstractSort {
             int finalI = i;
             threads[i] = new Thread(() -> {
                 try {
-                    sortWithSleep(arr, finalI*interval, finalI*interval+interval-1, finalI == 0);
+                    sortAndDraw(arr, finalI*interval, finalI*interval+interval-1, finalI == 0);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -82,13 +82,13 @@ public class MergeSortMultithreaded extends AbstractSort {
         merge(arr, 0, 99, true);
     }
 
-    private void sortWithSleep(Element[] arr, int left, int right, boolean drawEnabled) throws InterruptedException {
+    private void sortAndDraw(Element[] arr, int left, int right, boolean drawEnabled) throws InterruptedException {
         if (left >= right) return;
 
         int mid = left + (right - left) / 2;
 
-        sortWithSleep(arr, left, mid, drawEnabled);
-        sortWithSleep(arr, mid+1, right, drawEnabled);
+        sortAndDraw(arr, left, mid, drawEnabled);
+        sortAndDraw(arr, mid+1, right, drawEnabled);
 
         merge(arr, left, right, drawEnabled);
     }
