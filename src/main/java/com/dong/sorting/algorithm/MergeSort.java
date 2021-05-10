@@ -10,22 +10,21 @@ public class MergeSort extends AbstractSort {
         super(drawing, timeComplexity, spaceComplexity);
     }
 
-    public void sort(Element[] arr, int speed) throws InterruptedException {
-        long sleep = Util.getSleepTimeFromSpeed(speed);
-        sortWithSleep(arr, 0, arr.length-1, sleep);
+    public void sort(Element[] arr) throws InterruptedException {
+        sortWithSleep(arr, 0, arr.length-1);
     }
 
-    private void sortWithSleep(Element[] arr, int left, int right, long sleep) throws InterruptedException {
+    private void sortWithSleep(Element[] arr, int left, int right) throws InterruptedException {
         if (left >= right) return;
 
         int mid = left + (right - left) / 2;
-        sortWithSleep(arr, left, mid, sleep);
-        sortWithSleep(arr, mid+1, right, sleep);
+        sortWithSleep(arr, left, mid);
+        sortWithSleep(arr, mid+1, right);
 
-        merge(arr, left, right, sleep);
+        merge(arr, left, right);
     }
 
-    private void merge(Element[] arr, int left, int right, long sleep) throws InterruptedException {
+    private void merge(Element[] arr, int left, int right) throws InterruptedException {
         Element[] tmp = new Element[right-left+1];
 
         int mid = left + (right - left) / 2;
@@ -61,7 +60,7 @@ public class MergeSort extends AbstractSort {
         for (int i = left; i <= right; ++i, ++ptr3) {
             arr[i] = tmp[ptr3];
             arr[i].setHighlighted(true);
-            this.drawing.drawWithSleep(arr, sleep);
+            this.drawing.drawWithSleep(arr);
             arr[i].setHighlighted(false);
         }
     }

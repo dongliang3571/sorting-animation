@@ -10,12 +10,11 @@ public class InsertionSort extends AbstractSort {
         super(drawing, timeComplexity, spaceComplexity);
     }
 
-    public void sort(Element[] arr, int speed) throws InterruptedException {
-        long sleep = Util.getSleepTimeFromSpeed(speed);
-        sortWithSleep(arr, sleep);
+    public void sort(Element[] arr) throws InterruptedException {
+        sortWithSleep(arr);
     }
 
-    private void sortWithSleep(Element[] arr, long sleep) throws InterruptedException {
+    private void sortWithSleep(Element[] arr) throws InterruptedException {
         if (arr == null || arr.length == 0 || arr.length == 1) return;
 
         for (int i = 1; i < arr.length; ++i) {
@@ -24,7 +23,7 @@ public class InsertionSort extends AbstractSort {
 
             while (backPtr > 0 && cur.compareTo(arr[backPtr-1]) < 0) {
                 arr[backPtr].setHighlighted(true);
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
                 arr[backPtr].setHighlighted(false);
 
                 arr[backPtr] = arr[backPtr-1];
@@ -32,7 +31,7 @@ public class InsertionSort extends AbstractSort {
             }
 
             arr[backPtr] = cur;
-            this.drawing.drawWithSleep(arr, sleep);
+            this.drawing.drawWithSleep(arr);
         }
 
         this.drawing.draw(arr);

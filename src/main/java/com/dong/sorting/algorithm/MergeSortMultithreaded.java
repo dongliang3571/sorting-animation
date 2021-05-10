@@ -14,14 +14,12 @@ public class MergeSortMultithreaded extends AbstractSort {
         threads = new Thread[numOfThreads];
     }
 
-    public void sort(Element[] arr, int speed) throws InterruptedException {
-        long sleep = Util.getSleepTimeFromSpeed(speed);
-
+    public void sort(Element[] arr) throws InterruptedException {
         for (int i = 0; i < numOfThreads; ++i) {
             int finalI = i;
             threads[i] = new Thread(() -> {
                 try {
-                    sortWithSleep(arr, finalI*interval, finalI*interval+interval-1, sleep, finalI == 0);
+                    sortWithSleep(arr, finalI*interval, finalI*interval+interval-1, finalI == 0);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -49,7 +47,7 @@ public class MergeSortMultithreaded extends AbstractSort {
 
         threads[0] = new Thread(() -> {
             try {
-                merge(arr, 0, 49, sleep, true);
+                merge(arr, 0, 49, true);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -58,7 +56,7 @@ public class MergeSortMultithreaded extends AbstractSort {
 
         threads[1] = new Thread(() -> {
             try {
-                merge(arr, 50, 99, sleep, false);
+                merge(arr, 50, 99, false);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -81,21 +79,21 @@ public class MergeSortMultithreaded extends AbstractSort {
             }
         }
 
-        merge(arr, 0, 99, sleep, true);
+        merge(arr, 0, 99, true);
     }
 
-    private void sortWithSleep(Element[] arr, int left, int right, long sleep, boolean drawEnabled) throws InterruptedException {
+    private void sortWithSleep(Element[] arr, int left, int right, boolean drawEnabled) throws InterruptedException {
         if (left >= right) return;
 
         int mid = left + (right - left) / 2;
 
-        sortWithSleep(arr, left, mid, sleep, drawEnabled);
-        sortWithSleep(arr, mid+1, right, sleep, drawEnabled);
+        sortWithSleep(arr, left, mid, drawEnabled);
+        sortWithSleep(arr, mid+1, right, drawEnabled);
 
-        merge(arr, left, right, sleep, drawEnabled);
+        merge(arr, left, right, drawEnabled);
     }
 
-    private void merge(Element[] arr, int left, int right, long sleep, boolean drawEnabled) throws InterruptedException {
+    private void merge(Element[] arr, int left, int right, boolean drawEnabled) throws InterruptedException {
         Element[] tmp = new Element[right-left+1];
 
         int mid = left + (right - left) / 2;
@@ -132,9 +130,9 @@ public class MergeSortMultithreaded extends AbstractSort {
             arr[i] = tmp[ptr3];
             arr[i].setHighlighted(true);
             if (drawEnabled) {
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
             } else {
-                Thread.sleep(sleep);
+                this.drawing.sleepOnly();
             }
             arr[i].setHighlighted(false);
         }

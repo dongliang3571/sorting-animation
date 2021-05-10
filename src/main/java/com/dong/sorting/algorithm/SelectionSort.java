@@ -2,7 +2,6 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
-import com.dong.sorting.util.Util;
 
 public class SelectionSort extends AbstractSort {
 
@@ -10,12 +9,11 @@ public class SelectionSort extends AbstractSort {
         super(drawing, timeComplexity, spaceComplexity);
     }
 
-    public void sort(Element[] arr, int speed) throws InterruptedException {
-        long sleep = Util.getSleepTimeFromSpeed(speed);
-        sortWithSleep(arr, sleep);
+    public void sort(Element[] arr) throws InterruptedException {
+        sortWithSleep(arr);
     }
 
-    private void sortWithSleep(Element[] arr, long sleep) throws InterruptedException {
+    private void sortWithSleep(Element[] arr) throws InterruptedException {
         if (arr == null || arr.length == 0 || arr.length == 1) return;
 
         for (int i = 0; i < arr.length; ++i) {
@@ -30,12 +28,12 @@ public class SelectionSort extends AbstractSort {
             if (minIndex != i) {
                 arr[minIndex].setHighlighted(true);
                 arr[i].setHighlighted(true);
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
                 Element tmp = arr[i];
                 arr[i] = arr[minIndex];
                 arr[minIndex] = tmp;
 
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
                 arr[minIndex].setHighlighted(false);
                 arr[i].setHighlighted(false);
             }

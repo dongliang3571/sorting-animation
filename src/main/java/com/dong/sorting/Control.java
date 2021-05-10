@@ -4,6 +4,7 @@ import com.dong.sorting.algorithm.BubbleSort;
 import com.dong.sorting.algorithm.SortingAlgorithm;
 import com.dong.sorting.algorithm.SortingRunner;
 import com.dong.sorting.drawing.ArrayDrawing;
+import com.dong.sorting.drawing.ArrayDrawingImpl;
 import com.dong.sorting.drawing.GraphType;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
@@ -13,13 +14,9 @@ import org.teavm.jso.dom.html.HTMLOptionsCollection;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 import org.teavm.jso.dom.xml.Text;
 
-import javax.swing.text.html.HTML;
-
 public class Control {
 
     public static final HTMLDocument document = HTMLDocument.current();
-    public static final int defaultSpeed = 21;
-    public static final int defaultSpeedLevel = 21;
 
     private SortingAlgorithm algorithms;
     private ArrayDrawing drawing;
@@ -32,7 +29,6 @@ public class Control {
         this.drawing = drawing;
         this.algorithms = new SortingAlgorithm(drawing);
         this.algorithms.setCurrentAlgorithm(this.algorithms.getAlgorithm(BubbleSort.class.getSimpleName()));
-        this.algorithms.setCurrentSpeed(defaultSpeed);
         this.algorithms.generateRandomArrayAndDraw();
         setControlMenu();
     }
@@ -59,11 +55,11 @@ public class Control {
 
         HTMLOptionElement option = null;
         Text text = null;
-        for (int i = 1; i <= defaultSpeedLevel; ++i) {
+        for (int i = 1; i <= ArrayDrawing.DEFAULT_SPEED_LEVELS; ++i) {
             option = (HTMLOptionElement) document.createElement("option");
             text = document.createTextNode(Integer.toString(i));
             option.withAttr("value", Integer.toString(i));
-            if (i == defaultSpeed) { // select default speed of 10
+            if (i == ArrayDrawing.DEFAULT_SPEED) { // select default speed of 20
                 option.setDefaultSelected(true);
             }
             option.appendChild(text);
@@ -72,7 +68,7 @@ public class Control {
 
         select.addEventListener("change", evt -> {
             HTMLOptionsCollection col = select.getOptions();
-            algorithms.setCurrentSpeed(Integer.parseInt(col.item(col.getSelectedIndex()).getValue()));
+            drawing.setCurrentSpeed(Integer.parseInt(col.item(col.getSelectedIndex()).getValue()));
         });
 
         div.appendChild(label);

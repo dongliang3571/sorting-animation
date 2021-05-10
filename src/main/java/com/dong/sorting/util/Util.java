@@ -5,7 +5,7 @@ public class Util {
         long sleep = 500;
 
         if (speed >= 21) {
-            sleep = 10;
+            sleep = 5;
         } else {
             sleep = sleep/speed;
         }

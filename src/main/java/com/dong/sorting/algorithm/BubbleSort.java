@@ -11,12 +11,11 @@ public class BubbleSort extends AbstractSort {
     }
 
     @Override
-    public void sort(Element[] arr, int speed) throws InterruptedException {
-        long sleep = Util.getSleepTimeFromSpeed(speed);
-        sortWithSleep(arr, sleep);
+    public void sort(Element[] arr) throws InterruptedException {
+        sortWithSleep(arr);
     }
 
-    private void sortWithSleep(Element[] arr, long sleep) throws InterruptedException {
+    private void sortWithSleep(Element[] arr) throws InterruptedException {
         if (arr == null || arr.length == 0 || arr.length == 1) return;
 
         boolean swapHappened = true;
@@ -31,7 +30,7 @@ public class BubbleSort extends AbstractSort {
                     arr[i] = tmp;
 
                     arr[i].setHighlighted(true);
-                    this.drawing.drawWithSleep(arr, sleep);
+                    this.drawing.drawWithSleep(arr);
                     arr[i].setHighlighted(false);
 
                     swapHappened = true;

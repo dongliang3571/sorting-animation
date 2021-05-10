@@ -32,7 +32,7 @@ public abstract class AbstractSort implements Sort {
     }
 
     @Override
-    public void sort(Element[] arr, int speed) throws InterruptedException {
+    public void sort(Element[] arr) throws InterruptedException {
 
     }
 

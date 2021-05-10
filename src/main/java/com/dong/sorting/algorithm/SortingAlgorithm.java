@@ -18,7 +18,6 @@ public class SortingAlgorithm {
     private Map<String, Sort> algorithmMap;
     private ArrayDrawing drawing;
     private Sort currentAlgorithm;
-    private int currentSpeed;
     private Element[] arr;
 
     public Sort getCurrentAlgorithm() {
@@ -27,14 +26,6 @@ public class SortingAlgorithm {
 
     public void setCurrentAlgorithm(Sort currentAlgorithm) {
         this.currentAlgorithm = currentAlgorithm;
-    }
-
-    public int getCurrentSpeed() {
-        return currentSpeed;
-    }
-
-    public void setCurrentSpeed(int currentSpeed) {
-        this.currentSpeed = currentSpeed;
     }
 
     public SortingAlgorithm(ArrayDrawing drawing) {
@@ -52,6 +43,7 @@ public class SortingAlgorithm {
         this.addAlgorithm(new QuickSortMultithreaded(drawing, "O(n)", "O(n)"));
         this.addAlgorithm(new HeapSortRecursive(drawing, "O(nlogn)", "O(1)"));
         this.addAlgorithm(new HeapSortIterative(drawing, "O(nlogn)", "O(1)"));
+        this.addAlgorithm(new CountingSort(drawing, "O(n+k)", "O(k)"));
     }
 
     public void addAlgorithm(Sort algorithm) {
@@ -75,7 +67,7 @@ public class SortingAlgorithm {
     }
 
     public void startSorting() throws InterruptedException {
-        currentAlgorithm.sort(arr, currentSpeed);
+        currentAlgorithm.sort(arr);
     }
 
     public void generateRandomArrayAndDraw() {

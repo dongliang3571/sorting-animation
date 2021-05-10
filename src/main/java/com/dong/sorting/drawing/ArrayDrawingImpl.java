@@ -1,6 +1,7 @@
 package com.dong.sorting.drawing;
 
 import com.dong.sorting.model.Element;
+import com.dong.sorting.util.Util;
 import org.teavm.jso.canvas.CanvasRenderingContext2D;
 import org.teavm.jso.dom.html.HTMLCanvasElement;
 
@@ -16,10 +17,20 @@ public class ArrayDrawingImpl implements ArrayDrawing {
     private static final String DOT_HIGHLIGHTED_COLOR = "red";
     private static final int CANVAS_WIDTH = 1500;
     private static final int CANVAS_HEIGHT = 600;
-
     private HTMLCanvasElement canvas;
     private CanvasRenderingContext2D context;
     private GraphType currentGraphType;
+    private int currentSpeed;
+
+    @Override
+    public int getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    @Override
+    public void setCurrentSpeed(int speed) {
+        currentSpeed = speed;
+    }
 
     @Override
     public GraphType getCurrentGraphType() {
@@ -37,6 +48,11 @@ public class ArrayDrawingImpl implements ArrayDrawing {
         this.canvas.setHeight(CANVAS_HEIGHT);
         this.context = (CanvasRenderingContext2D)canvas.getContext("2d");
         this.currentGraphType = GraphType.Histogram;
+        this.currentSpeed = DEFAULT_SPEED;
+    }
+
+    public void sleepOnly() throws InterruptedException {
+        Thread.sleep(Util.getSleepTimeFromSpeed(currentSpeed));
     }
 
     public void draw(Element[] arr) {
@@ -62,9 +78,9 @@ public class ArrayDrawingImpl implements ArrayDrawing {
         context.closePath();
     }
 
-    public void drawWithSleep(Element[] arr, long millis) throws InterruptedException {
+    public void drawWithSleep(Element[] arr) throws InterruptedException {
         draw(arr);
-        Thread.sleep(millis);
+        Thread.sleep(Util.getSleepTimeFromSpeed(currentSpeed));
     }
 
     private void drawDot(Element e, int position) {

@@ -10,22 +10,21 @@ public class QuickSort extends AbstractSort {
         super(drawing, timeComplexity, spaceComplexity);
     }
 
-    public void sort(Element[] arr, int speed) throws InterruptedException {
-        long sleep = Util.getSleepTimeFromSpeed(speed);
-        sortWithSleep(arr, 0, arr.length-1, sleep);
+    public void sort(Element[] arr) throws InterruptedException {
+        sortWithSleep(arr, 0, arr.length-1);
     }
 
-    private void sortWithSleep(Element[] arr, int low, int high, long sleep) throws InterruptedException {
+    private void sortWithSleep(Element[] arr, int low, int high) throws InterruptedException {
         if (arr == null || arr.length == 0 || arr.length == 1) return;
         if (high <= low) return;
 
-        int pivot = partition(arr, low, high, sleep);
+        int pivot = partition(arr, low, high);
 
-        sortWithSleep(arr, low, pivot-1, sleep);
-        sortWithSleep(arr, pivot, high, sleep);
+        sortWithSleep(arr, low, pivot-1);
+        sortWithSleep(arr, pivot, high);
     }
 
-    private int partition(Element[] arr, int low, int high, long sleep) throws InterruptedException {
+    private int partition(Element[] arr, int low, int high) throws InterruptedException {
 
         Element pivot = arr[low]; // take the leftmost element as pivot
         pivot.setHighlighted(true);
@@ -36,14 +35,14 @@ public class QuickSort extends AbstractSort {
         while (left <= right) {
             while (arr[left].compareTo(pivot) < 0) {
                 arr[left].setHighlighted(true);
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
                 arr[left].setHighlighted(false);
                 ++left;
             }
 
             while (arr[right].compareTo(pivot) > 0) {
                 arr[right].setHighlighted(true);
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
                 arr[right].setHighlighted(false);
                 --right;
             }
@@ -51,11 +50,11 @@ public class QuickSort extends AbstractSort {
             if (left <= right) {
                 arr[left].setHighlighted(true);
                 arr[right].setHighlighted(true);
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
                 Element tmp = arr[left];
                 arr[left] = arr[right];
                 arr[right] = tmp;
-                this.drawing.drawWithSleep(arr, sleep);
+                this.drawing.drawWithSleep(arr);
                 arr[left].setHighlighted(false);
                 arr[right].setHighlighted(false);
 
