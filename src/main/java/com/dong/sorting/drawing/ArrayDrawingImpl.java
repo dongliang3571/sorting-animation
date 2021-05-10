@@ -48,13 +48,18 @@ public class ArrayDrawingImpl implements ArrayDrawing {
             case Dot:
                 biC = this::drawDot;
                 break;
+            case DotWithLine:
+                biC = this::drawDotWithLine;
+                break;
             default:
                 biC = this::drawHistogram;
         }
 
+        context.beginPath();
         for (int i = 0; i < arr.length; ++i) {
             biC.accept(arr[i], i);
         }
+        context.closePath();
     }
 
     public void drawWithSleep(Element[] arr, long millis) throws InterruptedException {
@@ -76,6 +81,20 @@ public class ArrayDrawingImpl implements ArrayDrawing {
                 2 * Math.PI);
         context.fill();
         context.closePath();
+    }
+
+    private void drawDotWithLine(Element e, int position) {
+        double height = e.getValue();
+        double canvas_height = (double)CANVAS_HEIGHT;
+
+        context.setStrokeStyle(e.isHighlighted() ? DOT_HIGHLIGHTED_COLOR : DOT_COLOR);
+        context.arc(
+                position * RECTANGLE_WIDTH+RECTANGLE_WIDTH/2,
+                canvas_height - height,
+                4,
+                0,
+                2 * Math.PI);
+        context.stroke();
     }
 
     // we first draw a big rectangle
