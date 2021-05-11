@@ -2,7 +2,6 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
-import com.dong.sorting.util.Util;
 
 public class QuickSort extends AbstractSort {
 

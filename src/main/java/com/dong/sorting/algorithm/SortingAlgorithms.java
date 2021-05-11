@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class SortingAlgorithm {
+public class SortingAlgorithms {
 
     public static final Random random = new Random();
     public static final int ARRAY_SIZE = 100;
@@ -28,7 +28,7 @@ public class SortingAlgorithm {
         this.currentAlgorithm = currentAlgorithm;
     }
 
-    public SortingAlgorithm(ArrayDrawing drawing) {
+    public SortingAlgorithms(ArrayDrawing drawing) {
         this.drawing = drawing;
         if (algorithmMap == null) {
             algorithmMap = new HashMap<>();

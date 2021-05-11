@@ -2,22 +2,16 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
-import com.dong.sorting.util.Util;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class QuickSortMultithreaded extends AbstractSort {
-
-    public static int threadLevel = 3;
-    private Queue<int[]> intervals;
     private List<Thread> threads;
 
     public QuickSortMultithreaded(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
         super(drawing, timeComplexity, spaceComplexity);
-        intervals = new LinkedList<>();
         threads = new ArrayList<>();
     }
 
@@ -37,7 +31,6 @@ public class QuickSortMultithreaded extends AbstractSort {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         });
 
         Thread t2 = new Thread(() -> {
@@ -48,6 +41,8 @@ public class QuickSortMultithreaded extends AbstractSort {
             }
         });
 
+        threads.add(t1);
+        threads.add(t2);
         t1.start();
         t2.start();
     }
@@ -97,5 +92,14 @@ public class QuickSortMultithreaded extends AbstractSort {
         // 4, 3, 5, 8, 1, 7, 6
         // 4, 3, 5, 1, 8, 7, 6
         return left;
+    }
+
+    @Override
+    public void interrupt() {
+        super.interrupt();
+
+        for (Thread t : threads) {
+            if (t != null) t.interrupt();
+        }
     }
 }

@@ -3,82 +3,19 @@ package com.dong.sorting.algorithm;
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MergeSortMultithreaded extends AbstractSort {
-    private static int numOfThreads = 4;
-    private static int interval = SortingAlgorithms.ARRAY_SIZE/numOfThreads;
-    private Thread[] threads;
+    private List<Thread> threads;
 
     public MergeSortMultithreaded(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
         super(drawing, timeComplexity, spaceComplexity);
-        threads = new Thread[numOfThreads];
+        threads = new ArrayList<>();
     }
 
     public void sort(Element[] arr) throws InterruptedException {
-        for (int i = 0; i < numOfThreads; ++i) {
-            int finalI = i;
-            threads[i] = new Thread(() -> {
-                try {
-                    sortAndDraw(arr, finalI*interval, finalI*interval+interval-1, finalI == 0);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                // when thread finishes it's job, it's supposed to send signal to .join() call
-                // but it doesn't work really well in teavm, so we send interrupt signal instead
-                Thread.currentThread().interrupt();
-            });
-        }
-
-        for (Thread t : threads) {
-            t.start();
-        }
-
-        // .join() don't work perfectly after be translated into javascript
-        // we're using interrupted to simulate join
-        boolean interrupted = false;
-        while (!interrupted) {
-            interrupted = true;
-            for (Thread t : threads) {
-                t.join(1);
-                interrupted = interrupted & t.isInterrupted();
-            }
-        }
-
-        threads[0] = new Thread(() -> {
-            try {
-                merge(arr, 0, 49, true);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Thread.currentThread().interrupt();
-        });
-
-        threads[1] = new Thread(() -> {
-            try {
-                merge(arr, 50, 99, false);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Thread.currentThread().interrupt();
-        });
-
-        for (int i = 0; i < 2; ++i) {
-            threads[i].start();
-        }
-
-        // .join() don't work perfectly after be translated into javascript
-        // we're using interrupted to simulate join
-        interrupted = false;
-        while (!interrupted) {
-            interrupted = true;
-
-            for (int i = 0; i < 2; ++i) {
-                threads[i].join(1);
-                interrupted = interrupted & threads[i].isInterrupted();
-            }
-        }
-
-        merge(arr, 0, 99, true);
+        sortAndDraw(arr, 0, arr.length-1, true);
     }
 
     private void sortAndDraw(Element[] arr, int left, int right, boolean drawEnabled) throws InterruptedException {
@@ -86,8 +23,41 @@ public class MergeSortMultithreaded extends AbstractSort {
 
         int mid = left + (right - left) / 2;
 
-        sortAndDraw(arr, left, mid, drawEnabled);
-        sortAndDraw(arr, mid+1, right, drawEnabled);
+        Thread t1 = new Thread(() -> {
+            try {
+                sortAndDraw(arr, left, mid, drawEnabled);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Thread.currentThread().interrupt();
+        });
+
+        Thread t2 = new Thread(() -> {
+            try {
+                sortAndDraw(arr, mid+1, right, drawEnabled);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Thread.currentThread().interrupt();
+        });
+
+        threads.add(t1);
+        threads.add(t2);
+        t1.start();
+        t2.start();
+
+        // .join() don't work perfectly after be translated into javascript
+        // we're using interrupted to simulate join
+        boolean interrupted = false;
+        while (!interrupted) {
+            interrupted = true;
+            t1.join(1);
+            t2.join(1);
+            interrupted = interrupted & t1.isInterrupted();
+            interrupted = interrupted & t2.isInterrupted();
+        }
 
         merge(arr, left, right, drawEnabled);
     }

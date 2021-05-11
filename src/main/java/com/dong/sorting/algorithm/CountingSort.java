@@ -3,6 +3,7 @@ package com.dong.sorting.algorithm;
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
 
+// Can only work with positive integers
 public class CountingSort extends AbstractSort {
 
     public CountingSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
