@@ -13,7 +13,7 @@ import java.util.Random;
 public class SortingAlgorithms {
 
     public static final Random random = new Random();
-    public static final int ARRAY_SIZE = 100;
+    public static final int ARRAY_SIZE = 200;
 
     private Map<String, Sort> algorithmMap;
     private ArrayDrawing drawing;
