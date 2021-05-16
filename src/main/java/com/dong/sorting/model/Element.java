@@ -8,6 +8,11 @@ public class Element implements Comparable<Element> {
         this.value = value;
     }
 
+    public Element(double value, boolean isHighlighted) {
+        this.value = value;
+        this.isHighlighted = isHighlighted;
+    }
+
     public double getValue() {
         return value;
     }

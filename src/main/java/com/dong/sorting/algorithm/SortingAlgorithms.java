@@ -14,6 +14,7 @@ public class SortingAlgorithms {
 
     public static final Random random = new Random();
     public static final int ARRAY_SIZE = 200;
+    public static final int MAX_NUMBER = 4000000;
 
     private Map<String, Sort> algorithmMap;
     private ArrayDrawing drawing;
@@ -45,7 +46,8 @@ public class SortingAlgorithms {
         this.addAlgorithm(new HeapSortIterative(drawing, "O(nlogn)", "O(1)"));
         this.addAlgorithm(new CountingSort(drawing, "O(n+k) where k is the biggest number in the array", "O(k)"));
         this.addAlgorithm(new BucketSort(drawing, "O(n+n^2/k+k) where k is number of buckets", "O(n)"));
-        this.addAlgorithm(new RadixSortLSD(drawing, "O(n+n^2/k+k) where k is number of buckets", "O(n)"));
+        this.addAlgorithm(new RadixSortLSD(drawing, "O(n*w) where w is number of digits in max key", "O(n)"));
+        this.addAlgorithm(new RadixSortMSD(drawing, "O(n*w) where w is number of digits in max key", "O(n)"));
     }
 
     public void addAlgorithm(Sort algorithm) {
@@ -77,7 +79,7 @@ public class SortingAlgorithms {
 
         for (int i = 0; i < ARRAY_SIZE; ++i) {
             // I don't want 0s
-            arr[i] = new Element(random.nextInt(400)+10);
+            arr[i] = new Element(random.nextInt(MAX_NUMBER));
         }
 
         drawing.cleanCanvas();

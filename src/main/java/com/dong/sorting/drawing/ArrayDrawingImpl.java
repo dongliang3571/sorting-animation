@@ -1,11 +1,14 @@
 package com.dong.sorting.drawing;
 
+import com.dong.sorting.algorithm.SortingAlgorithms;
 import com.dong.sorting.model.Element;
 import com.dong.sorting.util.Util;
 import org.teavm.jso.canvas.CanvasRenderingContext2D;
 import org.teavm.jso.dom.html.HTMLCanvasElement;
 
 import java.util.function.BiConsumer;
+
+import static com.dong.sorting.util.Util.getMax;
 
 public class ArrayDrawingImpl implements ArrayDrawing {
 
@@ -17,6 +20,7 @@ public class ArrayDrawingImpl implements ArrayDrawing {
     private static final String DOT_HIGHLIGHTED_COLOR = "red";
     private static final int CANVAS_WIDTH = 1500;
     private static final int CANVAS_HEIGHT = 600;
+    private static final int RECTANGLE_MAX_HEIGHT = 400;
     private HTMLCanvasElement canvas;
     private CanvasRenderingContext2D context;
     private GraphType currentGraphType;
@@ -56,6 +60,8 @@ public class ArrayDrawingImpl implements ArrayDrawing {
     }
 
     public void draw(Element[] arr) {
+        arr = scaleDownArray(arr, SortingAlgorithms.MAX_NUMBER, RECTANGLE_MAX_HEIGHT);
+
         context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         BiConsumer<Element, Integer> biC;
@@ -76,6 +82,30 @@ public class ArrayDrawingImpl implements ArrayDrawing {
             biC.accept(arr[i], i);
         }
         context.closePath();
+
+        drawHorizontalLine();
+    }
+
+    private void drawHorizontalLine() {
+        context.beginPath();
+        context.setStrokeStyle(BORDER_COLOR);
+        context.moveTo(0, CANVAS_HEIGHT);
+        context.lineTo(CANVAS_WIDTH, CANVAS_HEIGHT);
+        context.stroke();
+        context.closePath();
+    }
+
+    public Element[] scaleDownArray(Element[] arr, int oldMax, int newMax) {
+        Element[] arrToDraw = new Element[arr.length];
+
+        for (int i = 0; i < arr.length; ++i) {
+            // arr[i].getValue()/newMax is a double between 0-1
+            arrToDraw[i] = new Element(
+                    Math.floor(arr[i].getValue() / oldMax * newMax),
+                    arr[i].isHighlighted());
+        }
+
+        return arrToDraw;
     }
 
     public void drawWithSleep(Element[] arr) throws InterruptedException {
@@ -129,7 +159,7 @@ public class ArrayDrawingImpl implements ArrayDrawing {
                 position * RECTANGLE_WIDTH+BORDER_SIZE,
                 canvas_height - height + BORDER_SIZE,
                 RECTANGLE_WIDTH - BORDER_SIZE*2,
-                height - BORDER_SIZE*2);
+                height == 0 ? height : height - BORDER_SIZE*2);
     }
 
     private void drawOuterRectangle(Element e, int position) {
