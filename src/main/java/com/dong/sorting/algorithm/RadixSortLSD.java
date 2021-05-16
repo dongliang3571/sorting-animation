@@ -49,9 +49,10 @@ public class RadixSortLSD extends AbstractSort {
 
             for (int j = 0; j < arr.length; ++j) {
                 arr[j] = new Element(output[j].getValue());
+                output[j].setHighlighted(true);
+                drawing.drawWithSleep(output);
+                output[j].setHighlighted(false);
             }
-
-            drawing.drawWithSleep(output);
         }
     }
 }
