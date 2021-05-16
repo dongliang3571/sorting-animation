@@ -2,8 +2,12 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
-import com.dong.sorting.util.Util;
 
+/**
+ * 1. Build a max heap using heapify approach from an array
+ * 2. Remove the max element from heap and put it at the end of the heap, reduce heap size by 1
+ * 3. Repeating 2 until the heap size is 0
+ */
 public class HeapSortIterative extends AbstractSort {
     public HeapSortIterative(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
         super(drawing, timeComplexity, spaceComplexity);

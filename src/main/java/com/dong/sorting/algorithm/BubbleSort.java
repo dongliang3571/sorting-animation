@@ -2,8 +2,12 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
-import com.dong.sorting.util.Util;
 
+/**
+ * 1. If current element is smaller than the previous element, swap them and move cursor forward by 1
+ * 2. Repeating the step 1 for every element in the array
+ * 3. Repeating step 1 and 2 until no more swap is performed when scanning the entire array
+ */
 public class BubbleSort extends AbstractSort {
 
     public BubbleSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {

@@ -3,6 +3,10 @@ package com.dong.sorting.algorithm;
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
 
+/** 1. Linear scan to find the smallest element
+ *  2. Swap it with the current element
+ *  3. Continue until scan through entire array
+ */
 public class SelectionSort extends AbstractSort {
 
     public SelectionSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {

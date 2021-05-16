@@ -2,8 +2,13 @@ package com.dong.sorting.algorithm;
 
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
-import com.dong.sorting.util.Util;
 
+/**
+ * 1. Scan through the array, for each element in the array, we compare it with the previous element,
+ * 2. if the current element is smaller, we move the previous element to the current position, and move the cursor back by 1
+ * 3. Repeating the step 2 util tge current element is larger
+ * 4. Repeating step 2 and 3 for every element in the array
+ */
 public class InsertionSort extends AbstractSort {
 
     public InsertionSort(ArrayDrawing drawing, String timeComplexity, String spaceComplexity) {
