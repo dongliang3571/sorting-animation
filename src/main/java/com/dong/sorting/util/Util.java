@@ -1,6 +1,7 @@
 package com.dong.sorting.util;
 
 import com.dong.sorting.drawing.ArrayDrawing;
+import com.dong.sorting.model.Element;
 
 public class Util {
     public static long getSleepTimeFromSpeed(int speed) {
@@ -15,4 +16,13 @@ public class Util {
         return sleep;
     }
 
+    public static double getMax(Element[] arr) {
+        double max = 0;
+
+        for (int i = 0; i < arr.length; ++i) {
+            max = Math.max(arr[i].getValue(), max);
+        }
+
+        return max;
+    }
 }

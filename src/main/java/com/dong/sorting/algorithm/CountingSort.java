@@ -3,6 +3,8 @@ package com.dong.sorting.algorithm;
 import com.dong.sorting.drawing.ArrayDrawing;
 import com.dong.sorting.model.Element;
 
+import static com.dong.sorting.util.Util.getMax;
+
 // Can only work with positive integers
 public class CountingSort extends AbstractSort {
 
@@ -17,10 +19,7 @@ public class CountingSort extends AbstractSort {
 
     private void sortAndDraw(Element[] arr) throws InterruptedException {
 
-        int max = 0;
-        for (Element e : arr) {
-            max = Math.max(max, (int)e.getValue());
-        }
+        int max = (int)getMax(arr);
 
         int[] count = new int[max+1];
 
@@ -31,17 +30,22 @@ public class CountingSort extends AbstractSort {
             count[(int)e.getValue()]++;
         }
 
-        int curIndex = 0;
+        for (int i = 1; i < count.length; ++i) {
+            count[i] = count[i-1] + count[i];
+        }
 
-        for (int i = 0; i < count.length; ++i) {
-            while (count[i] != 0) {
-                arr[curIndex].setHighlighted(true);
-                arr[curIndex].setValue(i);
-                drawing.drawWithSleep(arr);
-                arr[curIndex].setHighlighted(false);
-                count[i]--;
-                curIndex++;
-            }
+        Element[] output = new Element[arr.length];
+        for (int i = 0; i < arr.length; ++i) {
+            output[i] = new Element(arr[i].getValue());
+        }
+
+        for (int i = 0; i < arr.length; ++i) {
+            int val = (int) arr[i].getValue();
+            output[count[val]-1].setHighlighted(true);
+            output[count[val]-1].setValue(val);
+            drawing.drawWithSleep(output);
+            output[count[val]-1].setHighlighted(false);
+            count[val]--;
         }
     }
 }
