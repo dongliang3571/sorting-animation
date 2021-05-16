@@ -36,9 +36,9 @@ public class BucketSort extends AbstractSort {
         }
 
         public void add(T element) {
-            Node prev = tail.prev;
+            Node<T> prev = tail.prev;
 
-            prev.next = new Node(element);
+            prev.next = new Node<T>(element);
             prev.next.next= tail;
             prev.next.prev = prev;
             tail.prev = prev.next;
