@@ -45,6 +45,7 @@ public class SortingAlgorithms {
         this.addAlgorithm(new HeapSortIterative(drawing, "O(nlogn)", "O(1)"));
         this.addAlgorithm(new CountingSort(drawing, "O(n+k) where k is the biggest number in the array", "O(k)"));
         this.addAlgorithm(new BucketSort(drawing, "O(n+n^2/k+k) where k is number of buckets", "O(n)"));
+        this.addAlgorithm(new RadixSortLSD(drawing, "O(n+n^2/k+k) where k is number of buckets", "O(n)"));
     }
 
     public void addAlgorithm(Sort algorithm) {
