@@ -25,4 +25,14 @@ public class Util {
 
         return max;
     }
+
+    public static double getMax(Element[] arr, int low , int high) {
+        double max = 0;
+
+        for (int i = low; i < high; ++i) {
+            max = Math.max(arr[i].getValue(), max);
+        }
+
+        return max;
+    }
 }

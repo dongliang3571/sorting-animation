@@ -20,8 +20,12 @@ https://dongliang3571.github.io/sorting-animation
 
 ### Currently supported sorting algorithm
 - Bubble sort
+- Bucket sort
+- Couting sort
 - Heap Sort
 - Insertion sort
 - Merge sort
 - Quick sort
+- Radix sort LSD
+- Radix sort MSD
 - Selection sort
