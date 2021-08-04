@@ -6,7 +6,7 @@ It's written in java and the java bytecodes are compiled into Javascripts and [W
 
 ### Demo link
 
-https://dongliang3571.github.io/sorting-animation
+https://dongliang3571.github.io/sorting-animation/
 
 ### How to run from source code
 
